@@ -1,18 +1,11 @@
 version: '3.7'
 
 services:
-  nginx:
-    image: nginx_img
-    init: true
-    build: requirements/nginx
-    ports:
-      - "8443:443"
-    restart: always
-    container_name: mynginx
-
   mariadb:
     image: mariadb_img
     init: true
+    networks: 
+      - inception
     restart: always
     build:
       context: requirements/mariadb
@@ -24,3 +17,55 @@ services:
     env_file: 
       - .env
     container_name: mydatabase
+
+  wordpress:
+    image: wordpress_img
+    init: true
+    networks:
+      - inception
+    build:
+      context: requirements/wordpress
+    depends_on:
+      - mariadb
+    env_file:
+      - .env
+    expose:
+      - "9000"
+    volumes:
+      - /goinfre/lboudjem/wordpress:/var/www/wordpress
+    restart: always
+    container_name: mywordpress
+  
+  nginx:
+    image: nginx_img
+    init: true
+    networks:
+      - inception
+    build: requirements/nginx
+    ports:
+      - "8443:443"
+    restart: always
+    depends_on:
+      - wordpress
+    volumes:
+      - /goinfre/lboudjem/wordpress:/var/www/wordpress
+    container_name: mynginx
+
+# volumes:
+#   mariadb_vol:
+#     driver: local
+#     driver_opts:
+#       type: 'none' 
+#       o: 'bind'	
+#       device: '/goinfre/lboudjem/mariadb'	
+#   wordpress_vol:
+#     driver: local 
+#     driver_opts:
+#       type: 'none' 								
+#       o: 'bind'
+#       device: '/goinfre/lboudjem/wordpress'
+
+networks:
+  inception:
+    driver: bridge
+    name: inception

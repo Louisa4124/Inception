@@ -1,6 +1,5 @@
 FROM debian:11
 
-
 RUN apt-get update -y && apt-get upgrade -y
 RUN apt install -y mariadb-server
 
@@ -14,4 +13,4 @@ RUN service mariadb start && mariadb -u root -e "CREATE USER ${DB_USR_NAME} IDEN
 RUN service mariadb start && mariadb -u root -e "GRANT ALL PRIVILEGES ON ${DB_NAME}.* to ${DB_USR_NAME};"
 RUN service mariadb start && mariadb -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PSWRD}';"
 
-ENTRYPOINT ["mysqld"]
+ENTRYPOINT ["mysqld", "--bind-address=0.0.0.0"]
