@@ -1,0 +1,28 @@
+
+apt-get update -y && apt-get upgrade -y
+apt install -y mariadb-server
+service mariadb start
+mariadb -u root
+
+creer une database
+alterer le root user
+creer un user
+donner tous les privileges sur la db au user
+
+
+drop database if exists database_name; => ou "create or replace"
+create database database_name;
+
+creat user loulou identified by 'passwrd';
+grant all privileges on test.* to loulou
+
+alter user;
+
+SELECT User FROM mysql.user;
+
+
+show databases; =>montre toutes les db
+use database_name; =>selectione la db
+show database(); =>montre la db en cours
+show tables; =>montre les tables contenues dans la db
+show columns from db.table;

@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  nginx:
+    image: nginx_img
+    init: true
+    build: requirements/nginx
+    ports:
+      - "8443:443"
+    restart: always
+    container_name: mynginx
+
+  mariadb:
+    image: mariadb_img
+    init: true
+    restart: always
+    build:
+      context: requirements/mariadb
+      args:
+        DB_USR_NAME: ${DB_USR_NAME}
+        DB_USR_PSWRD: ${DB_USR_PSWRD}
+        DB_ROOT_PSWRD: ${DB_ROOT_PSWRD}
+        DB_NAME: ${DB_NAME}
+    env_file: 
+      - .env
+    container_name: mydatabase
