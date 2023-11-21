@@ -7,10 +7,10 @@ RUN apt-get install -y php php-fpm php-mysql mariadb-client
 
 RUN wget https://fr.wordpress.org/wordpress-6.4.1-fr_FR.tar.gz -P /var/www 
 WORKDIR /var/www
-RUN tar -xzf wordpress-6.4.1-fr_FR.tar.gz 
+RUN tar -xzf wordpress-6.4.1-fr_FR.tar.gz
 RUN rm wordpress-6.4.1-fr_FR.tar.gz
 
-# RUN chown -R root:root /var/www/wordpress
+RUN chown -R root:root /var/www/wordpress
 
 COPY tools/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
