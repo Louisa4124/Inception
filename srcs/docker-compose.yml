@@ -16,6 +16,8 @@ services:
         DB_NAME: ${DB_NAME}
     env_file: 
       - .env
+    volumes:
+      - /goinfre/lboudjem/mariadb:/var/lib/mysql
     container_name: mydatabase
 
   wordpress:
