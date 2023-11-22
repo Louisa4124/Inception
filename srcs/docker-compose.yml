@@ -16,8 +16,8 @@ services:
         DB_NAME: ${DB_NAME}
     env_file: 
       - .env
-    volumes:
-      - /goinfre/lboudjem/mariadb:/var/lib/mysql
+    # volumes:
+    #   - /goinfre/lboudjem/mariadb:/var/lib/mysql
     container_name: mydatabase
 
   wordpress:
@@ -34,7 +34,7 @@ services:
     expose:
       - "9000"
     volumes:
-      - /goinfre/lboudjem/wordpress:/var/www/wordpress
+      - wordpress_vol:/var/www/wordpress
     restart: always
     container_name: mywordpress
   
@@ -46,26 +46,27 @@ services:
     build: requirements/nginx
     ports:
       - "8443:443"
+      # - "8080:80"
     restart: always
     depends_on:
       - wordpress
     volumes:
-      - /goinfre/lboudjem/wordpress:/var/www/wordpress
+      - wordpress_vol:/var/www/wordpress
     container_name: mynginx
 
-# volumes:
+volumes:
 #   mariadb_vol:
 #     driver: local
 #     driver_opts:
 #       type: 'none' 
 #       o: 'bind'	
 #       device: '/goinfre/lboudjem/mariadb'	
-#   wordpress_vol:
-#     driver: local 
-#     driver_opts:
-#       type: 'none' 								
-#       o: 'bind'
-#       device: '/goinfre/lboudjem/wordpress'
+  wordpress_vol:
+    driver: local 
+    driver_opts:
+      type: 'none' 								
+      o: 'bind'
+      device: '/goinfre/lboudjem/wordpress'
 
 networks:
   inception:
