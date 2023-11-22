@@ -12,6 +12,8 @@ RUN rm wordpress-6.4.1-fr_FR.zip
 
 RUN chown -R root:root /var/www/wordpress
 
+RUN rm -rf /var/www/wordpress
+
 COPY tools/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
@@ -22,7 +24,6 @@ COPY /tools/config.sh /tmp/
 RUN chmod 755 /tmp/config.sh
 
 RUN service php7.4-fpm start
-
 
 EXPOSE 9000
 

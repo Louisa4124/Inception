@@ -22,6 +22,8 @@ search .conf file
 ajouter clear_env = no
 listen=wordpress:9000
 
+ docker exec -ti mywordpress bash
+
 copier tools/www.conf dans /etc/php/7.4/fpm/pool.d
 
 wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
