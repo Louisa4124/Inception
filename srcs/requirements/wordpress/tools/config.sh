@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -f "/var/www/wordpress/wp-config.php" ];
+if [ ! -f "/var/www/wordpress/wp-config.php" ];
 then
 	wp core download --allow-root --path="/var/www/wordpress" \
 	&& wp config create	--allow-root \
