@@ -59,14 +59,14 @@ volumes:
     driver_opts:
       type: 'none' 
       o: 'bind'
-      device: '/goinfre/lboudjem/mariadb'
+      device: '/home/${USER}/data/mariadb'
 
   wordpress_vol:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/goinfre/lboudjem/wordpress'
+      device: '/home/${USER}/data/wordpress'
 
 networks:
   inception:
