@@ -16,6 +16,8 @@ services:
         DB_NAME: ${DB_NAME}
     env_file: 
       - .env
+    expose:
+      - "3306"
     volumes:
       - mariadb_vol:/var/www/mariadb
     container_name: mydatabase

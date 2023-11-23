@@ -13,4 +13,6 @@ RUN service mariadb start && mariadb -u root -e "CREATE USER ${DB_USR_NAME} IDEN
 RUN service mariadb start && mariadb -u root -e "GRANT ALL PRIVILEGES ON ${DB_NAME}.* to ${DB_USR_NAME};"
 RUN service mariadb start && mariadb -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PSWRD}';"
 
+EXPOSE 3306
+
 ENTRYPOINT ["mysqld", "--bind-address=0.0.0.0"]
