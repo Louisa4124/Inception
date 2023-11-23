@@ -2,3 +2,7 @@ docker run
 docker stop 
 docker ps
 docker exec 
+
+
+docker stop $(docker ps -qa); docker rm $(docker ps -qa); docker rmi -f $(docker images -qa); docker network rm $(docker network ls -q);
+
