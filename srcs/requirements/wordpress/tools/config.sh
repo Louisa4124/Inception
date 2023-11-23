@@ -14,5 +14,6 @@ then
 	&& chown www-data:www-data /var/www/wordpress/wp-content/uploads -R 
 else
 	echo "Already configured"
+fi
 
 exec "$@"
