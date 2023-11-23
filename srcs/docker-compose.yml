@@ -19,7 +19,7 @@ services:
     expose:
       - "3306"
     volumes:
-      - mariadb_vol:/var/www/mariadb
+      - mariadb_vol:/var/lib/mysql
     container_name: mydatabase
 
   wordpress:
@@ -47,7 +47,7 @@ services:
       - inception
     build: requirements/nginx
     ports:
-      - "8443:443"
+      - "443:443"
     restart: always
     depends_on:
       - wordpress
