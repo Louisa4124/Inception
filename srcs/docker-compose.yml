@@ -64,6 +64,8 @@ services:
       context: requirements/bonus/adminer
     depends_on:
       - mariadb
+    volumes:
+      - wordpress_vol:/var/www/wordpress
     restart: always
     container_name: myadminer
 
