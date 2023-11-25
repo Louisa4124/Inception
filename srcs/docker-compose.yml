@@ -55,6 +55,18 @@ services:
       - wordpress_vol:/var/www/wordpress
     container_name: mynginx
 
+  adminer:
+    image: adminer_img
+    init: true
+    networks:
+      - inception
+    build:
+      context: requirements/bonus/adminer
+    depends_on:
+      - mariadb
+    restart: always
+    container_name: myadminer
+
 volumes:
   mariadb_vol:
     driver: local

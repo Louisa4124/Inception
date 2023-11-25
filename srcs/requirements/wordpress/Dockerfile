@@ -3,7 +3,7 @@ FROM debian:11
 RUN apt-get update -y && apt-get upgrade -y
 RUN apt-cache search wget && apt info wget && apt-get install -y wget
 
-RUN apt-get install -y unzip php php7.4-fpm php-mysql mariadb-client
+RUN apt-get install -y php php7.4-fpm php-mysql mariadb-client
 
 COPY tools/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 

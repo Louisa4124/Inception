@@ -26,3 +26,4 @@ use database_name; =>selectione la db
 show database(); =>montre la db en cours
 show tables; =>montre les tables contenues dans la db
 show columns from db.table;
+show * from db.table;
