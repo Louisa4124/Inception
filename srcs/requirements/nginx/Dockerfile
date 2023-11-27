@@ -10,8 +10,11 @@ RUN chmod 755 /var/www/html
 # user
 RUN chown -R www-data:www-data /var/www/html
 
-RUN openssl req -x509 -newkey rsa:4096 -keyout /etc/ssl/loulou.pem -out /etc/ssl/loulou.cert -sha256 -days 3650 -nodes -subj "/C=FR/ST=France/L=Lyon/O=42/CN=loulou"
+# to generate the certificate directly inside the image -> false
+# RUN openssl req -x509 -newkey rsa:4096 -keyout /etc/ssl/loulou.pem -out /etc/ssl/loulou.cert -sha256 -days 3650 -nodes -subj "/C=FR/ST=France/L=Lyon/O=42/CN=loulou"
 
+ADD tools/loulou.cert /etc/ssl/loulou.cert
+ADD tools/loulou.pem /etc/ssl/loulou.pem
 
 EXPOSE 443
 
